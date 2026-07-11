@@ -219,6 +219,6 @@ if __name__ == "__main__":
         TICKERS = config.TICKERS
         asyncio.run(download_all(TICKERS, YEARS))
         end_time = datetime.now()
-        logger.info(f"Ingestion pipeline ended at {end_time}, {end_time - start_time} seconds in total run  ...")
+        logger.info(f"Ingestion pipeline ended at {end_time}, {end_time - start_time} tim in total run  ...")
     except Exception as e:
         logger.error(f"Ingestion pipeline error: {e}")
