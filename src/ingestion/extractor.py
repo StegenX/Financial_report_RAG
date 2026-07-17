@@ -227,4 +227,4 @@ if __name__ == "__main__":
         end_time = datetime.now()
         logger.info(f"Extract pipeline ended at {end_time}, {end_time - start_time} tim in total run  ...")
     except Exception as e:
-        logger.error(f"Ingestion pipeline error: {e}")
+        logger.error(f"Extract pipeline error: {e}")
