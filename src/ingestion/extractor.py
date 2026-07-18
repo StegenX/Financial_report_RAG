@@ -225,6 +225,6 @@ if __name__ == "__main__":
         TICKERS = config.TICKERS
         extract_all(TICKERS, YEARS)
         end_time = datetime.now()
-        logger.info(f"Extract pipeline ended at {end_time}, {end_time - start_time} tim in total run  ...")
+        logger.info(f"Extract pipeline ended at {end_time}, {end_time - start_time} time in total run  ...")
     except Exception as e:
         logger.error(f"Extract pipeline error: {e}")

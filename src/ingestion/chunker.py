@@ -236,6 +236,6 @@ if __name__ == "__main__":
         TICKERS = config.TICKERS
         chunk_all(TICKERS, YEARS)
         end_time = datetime.now()
-        logger.info(f"Chunk pipeline ended at {end_time}, {end_time - start_time} tim in total run  ...")
+        logger.info(f"Chunk pipeline ended at {end_time}, {end_time - start_time} time in total run  ...")
     except Exception as e:
         logger.error(f"Chunk pipeline error: {e}")
