@@ -23,13 +23,13 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-def load_reranker(model: str = "ms-marco-MiniLM-L-6-v2"):
+def load_reranker(model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
     try:
         logger.info(f"LOAD_RERANKER: Loading reranker model in process ...")
 
         start_time = time.time()
 
-        model = CrossEncoder(model)
+        model = CrossEncoder(model_name)
 
         logger.info(f"LOAD_RERANKER: Loading reranker loaded successfully in {time.time() - start_time} seconds ...")
         return model
@@ -63,7 +63,7 @@ def rerank(query, candidates, reranker: CrossEncoder, top_k=5):
         return reranked_candidates[:top_k]
     except Exception as e:
         logger.error(f"RERANK: Failed to execute cross-encoder optimization: {e}")
-        return candidates[:top_k]
+        raise
     
 if __name__ == "__main__":
     try:
@@ -80,7 +80,6 @@ if __name__ == "__main__":
         chunks = retrieve(retriever_bundle, query, filters=search_filter)
         reranker_model = load_reranker()
         top_relevent = rerank(query, chunks, reranker_model)
-        context_output = format_context(top_relevent)
-        print(context_output)
+        context = format_context(top_relevent)
     except Exception as e:
         logger.error(f"Reranking pipeline failed: {e}")
