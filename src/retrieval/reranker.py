@@ -11,7 +11,7 @@ sys.path.append(parent_dir)
 import config
 from src.indexing.embedder import load_embedding_model
 from src.indexing.vector_store import create_chroma_client, get_or_create_collection
-from retriever import create_retriever, retrieve, format_context
+# from retriever import create_retriever, retrieve, format_context
 
 LOGS_PATH=config.LOGS_PATH
 
@@ -65,21 +65,21 @@ def rerank(query, candidates, reranker: CrossEncoder, top_k=5):
         logger.error(f"RERANK: Failed to execute cross-encoder optimization: {e}")
         raise
     
-if __name__ == "__main__":
-    try:
-        logger.info(f"Reranking pipeline in process ...")
-        client = create_chroma_client()
-        collection = get_or_create_collection(client, config.COLLECTION_NAME)
-        model = load_embedding_model()
+# if __name__ == "__main__":
+#     try:
+#         logger.info(f"Reranking pipeline in process ...")
+#         client = create_chroma_client()
+#         collection = get_or_create_collection(client, config.COLLECTION_NAME)
+#         model = load_embedding_model()
         
-        retriever_bundle = create_retriever(collection, model)
+#         retriever_bundle = create_retriever(collection, model)
         
-        query = "What was Apple's total revenue in 2023?"
-        search_filter = {"ticker": "aapl", "year": 2023}
+#         query = "What was Apple's total revenue in 2023?"
+#         search_filter = {"ticker": "aapl", "year": 2023}
         
-        chunks = retrieve(retriever_bundle, query, filters=search_filter)
-        reranker_model = load_reranker()
-        top_relevent = rerank(query, chunks, reranker_model)
-        context = format_context(top_relevent)
-    except Exception as e:
-        logger.error(f"Reranking pipeline failed: {e}")
+#         chunks = retrieve(retriever_bundle, query, filters=search_filter)
+#         reranker_model = load_reranker()
+#         top_relevent = rerank(query, chunks, reranker_model)
+#         context = format_context(top_relevent)
+#     except Exception as e:
+#         logger.error(f"Reranking pipeline failed: {e}")
