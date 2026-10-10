@@ -84,13 +84,16 @@ def index_document(collection: chromadb.Collection, embedded_chunks):
         logger.error(f"INDEX_DOCUMENT: Error: {e}")
         raise
 
-def index_all(tickers, years, client, collection):
+def index_all(tickers, years):
     try:
         logger.info(f"INDEX_ALL: Indexing and storing phase in process ...")
 
         indexed = 0
         success = []
         fail = []
+
+        client = create_chroma_client()
+        collection = get_or_create_collection(client, collection_name=config.COLLECTION_NAME)
 
         for ticker in tickers:
             for year in years:

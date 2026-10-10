@@ -98,7 +98,7 @@ def embed_document(ticker, year, model: SentenceTransformer):
         logger.error(f"EMBED_DOCUMENT: Error: {e}")
         raise
 
-def embed_all(tickers, years, model: SentenceTransformer):
+def embed_all(tickers, years):
     try:
         logger.info(f"EMBED_ALL: Embedding pipeline is in process ...")
         
@@ -106,6 +106,8 @@ def embed_all(tickers, years, model: SentenceTransformer):
         embeddings = []
         success = []
         fail = []
+
+        model = load_embedding_model()
 
         for ticker in tickers:
             for year in years:
