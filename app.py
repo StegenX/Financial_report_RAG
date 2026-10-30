@@ -141,7 +141,7 @@ Rephrase the user's latest query into a clear standalone search query explicitly
 # ==========================================
 st.set_page_config(page_title="FilingLens", page_icon="📊", layout="centered")
 
-st.title("FilingLens")
+st.title("Hi, I'm FilingLens, your SEC 10-K financial assistant!")
 st.markdown(
     "Explore SEC 10-K annual reports by asking questions about revenue, cash flow, "
     "business risks, and more. Choose a company and fiscal year in the sidebar; "
