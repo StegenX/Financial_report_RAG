@@ -16,8 +16,7 @@ from src.retrieval.retriever import create_retriever, retrieve, bm25_retrieve,fo
 from src.retrieval.reranker import load_reranker, rerank
 
 LOGS_PATH=config.LOGS_PATH
-NVIDIA_MODEL=config.NVIDIA_MODEL
-
+GROQ_MODEL=config.GROQ_MODEL
 logging.basicConfig(
     filename=LOGS_PATH,
     level=logging.INFO,
@@ -26,20 +25,20 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-def load_nvidia_client():
+def load_groq_client():
     try:
-        logger.info(f"LOAD_NVIDIA_CLIENT: Creating connection with {NVIDIA_MODEL} model in process ...")
+        logger.info(f"LOAD_GROQ_CLIENT: Creating connection with {GROQ_MODEL} model in process ...")
 
         client = OpenAI(
-            base_url = "https://integrate.api.nvidia.com/v1",
-            api_key = config.NVIDIA_API_KEY
+            base_url = "https://api.groq.com/openai/v1",
+            api_key = config.GROQ_API_KEY
         )
 
-        logger.info(f"LOAD_NVIDIA_CLIENT: Connection with {NVIDIA_MODEL} model has established successfully ...")
+        logger.info(f"LOAD_GROQ_CLIENT: Connection with {GROQ_MODEL} model has established successfully ...")
 
         return client
     except Exception as e:
-        logger.error(f"LOAD_NVIDIA_CLIENT: Error: {e}")
+        logger.error(f"LOAD_GROQ_CLIENT: Error: {e}")
         raise
 
 def build_prompt(query, context):
@@ -64,7 +63,7 @@ def generate(query, context, client, max_retries=5):
         for attempt in range(max_retries):
             try:
                 generated_answer = client.chat.completions.create(
-                    model=NVIDIA_MODEL,
+                    model=GROQ_MODEL,
                     messages=[
                         {"role": "system", "content": prompt},
                         {"role": "user", "content": query}
@@ -137,7 +136,7 @@ if __name__ == "__main__":
         
         retriever_bundle = create_retriever(collection, model)
         reranker = load_reranker()
-        nvidia_client = load_nvidia_client()
+        nvidia_client = load_groq_client()
         
         query = "What was Apple's total revenue in 2023?"
         search_filter = {"ticker": "aapl", "year": 2023}

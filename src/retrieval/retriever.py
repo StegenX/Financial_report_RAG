@@ -204,7 +204,7 @@ def hybrid_retrieve(retriever: dict, query: str, n_results: int = 20, filters: d
         
     except Exception as e:
         logger.error(f"HYBRID_RETRIEVE: Failed to execute RRF hybrid search: {e}")
-        return []
+        raise
     
 def format_context(results):
     try:
@@ -221,14 +221,15 @@ def format_context(results):
             if not content:
                 continue
                 
-            metadata = chunk.get("metadatas", {})
+            metadata = chunk.get("metadatas") or chunk.get("metadata") or {}
             
-            ticker = metadata.get("ticker", "UNKNOWN").lower()
+            ticker = str(metadata.get("ticker", "UNKNOWN")).lower()
             year = metadata.get("year", "UNKNOWN")
             page_num = metadata.get("page_number", "UNKNOWN")
             
             chunk_type = metadata.get("chunk_type")
-            header = f"[Source: {ticker}_{year}_10k.pdf | Page: {page_num} | Type: {chunk_type}]"
+            filename = chunk.get("source") or metadata.get("source") or f"{ticker}_{year}_10k.pdf"
+            header = f"[Source: {filename} | Page: {page_num} | Type: {chunk_type}]"
             
             block = f"{header}\n{content}"
             context_blocks.append(block)

@@ -1,0 +1,21 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+EMAIL=os.getenv("EMAIL")
+USER=os.getenv("USER")
+LOGS_PATH=os.getenv("LOGS_PATH")
+TICKERS=['AAPL', 'MSFT', 'TSLA', 'AMZN', 'GOOGL']
+YEARS=[2023, 2024, 2025]
+SUCCESSFULL_PATHS=os.getenv("SUCCESSFULL_PATHS")
+FAILED_PATHS=os.getenv("FAILED_PATHS")
+PROCESSED_PATH=os.getenv("PROCESSED_PATH")
+RAW_PATH=os.getenv("RAW_PATH")
+CHUNKS_PATH =os.getenv("CHUNKS_PATH")
+EMBEDDINGS_PATH=os.getenv("EMBEDDING_PATH")
+CHROMA_DB_PATH=os.getenv("CHROMA_DB_PATH")
+COLLECTION_NAME=os.getenv("COLLECTION_NAME")
+GROQ_API_KEY=os.getenv("GROQ_API_KEY")
+GROQ_MODEL=os.getenv("GROQ_MODEL")
+CHUNK_SIZE = 1500
+CHUNK_OVERLAP = 200
