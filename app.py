@@ -139,10 +139,14 @@ Rephrase the user's latest query into a clear standalone search query explicitly
 # ==========================================
 # 2. UI CONFIGURATION & SIDEBAR
 # ==========================================
-st.set_page_config(page_title="AI Financial Analyst", page_icon="📊", layout="centered")
+st.set_page_config(page_title="FilingLens", page_icon="📊", layout="centered")
 
-st.title("Financial RAG Assistant")
-st.markdown("Select a company and fiscal year in the sidebar to target your SEC 10-K search.")
+st.title("FilingLens")
+st.markdown(
+    "Explore SEC 10-K annual reports by asking questions about revenue, cash flow, "
+    "business risks, and more. Choose a company and fiscal year in the sidebar; "
+    "financial answers include the filing pages used."
+)
 
 # Sidebar Selection for Company and Year
 with st.sidebar:
