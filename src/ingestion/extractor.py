@@ -15,7 +15,6 @@ sys.path.append(parent_dir)
 import config
 
 logging.basicConfig(
-    filename=config.LOGS_PATH,
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )

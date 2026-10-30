@@ -15,10 +15,8 @@ from src.indexing.vector_store import create_chroma_client, get_or_create_collec
 from src.retrieval.retriever import create_retriever, retrieve, bm25_retrieve,format_context
 from src.retrieval.reranker import load_reranker, rerank
 
-LOGS_PATH=config.LOGS_PATH
 GROQ_MODEL=config.GROQ_MODEL
 logging.basicConfig(
-    filename=LOGS_PATH,
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )

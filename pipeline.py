@@ -12,10 +12,7 @@ import config
 from datetime import datetime
 import asyncio
 
-LOGS_PATH=config.LOGS_PATH
-
 logging.basicConfig(
-    filename=LOGS_PATH,
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )

@@ -13,10 +13,7 @@ from src.indexing.embedder import load_embedding_model
 from src.indexing.vector_store import create_chroma_client, get_or_create_collection
 # from retriever import create_retriever, retrieve, format_context
 
-LOGS_PATH=config.LOGS_PATH
-
 logging.basicConfig(
-    filename=LOGS_PATH,
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )

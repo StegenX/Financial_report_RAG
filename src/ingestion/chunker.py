@@ -10,10 +10,7 @@ parent_dir = str(Path(__file__).resolve().parent.parent.parent)
 sys.path.append(parent_dir)
 import config
 
-LOGS_PATH=config.LOGS_PATH
-
 logging.basicConfig(
-    filename=LOGS_PATH,
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )
